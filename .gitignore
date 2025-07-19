@@ -1,0 +1,134 @@
+# ===================================
+# Mnemonic Memory System - Git Ignore
+# ===================================
+
+# ===================================
+# Private and Internal Folders
+# ===================================
+.private-*
+.github/
+.git/
+
+# ===================================
+# AI Assistant and IDE Folders
+# ===================================
+.claude/
+.cline/
+.cursor/
+.roo/
+.aider/
+.continue/
+.windsurf/
+
+# ===================================
+# Environment and Configuration
+# ===================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===================================
+# Node.js Dependencies
+# ===================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===================================
+# Runtime and Process Files
+# ===================================
+*.log
+*.pid
+*.seed
+*.pid.lock
+.npm
+.eslintcache
+
+# ===================================
+# Build and Distribution
+# ===================================
+build/
+dist/
+*.tgz
+*.tar.gz
+
+# ===================================
+# Native Addon Build Artifacts
+# ===================================
+native/build/
+native/prebuilds/
+*.node
+
+# ===================================
+# Testing and Coverage
+# ===================================
+coverage/
+.nyc_output
+.coverage
+test-results/
+
+# ===================================
+# IDE and Editor Files
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===================================
+# Temporary and Cache Files
+# ===================================
+tmp/
+temp/
+.tmp/
+.cache/
+*.tmp
+
+# ===================================
+# OS Generated Files
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# ===================================
+# Memory System Specific
+# ===================================
+calibration_log.yaml
+mcp.log
+*.backup
+backups/
+
+# ===================================
+# Monitoring and Observability
+# ===================================
+grafana-storage/
+prometheus-data/
+jaeger-data/
+
+# ===================================
+# Development and Testing
+# ===================================
+.benchmark/
+load-test-results/
+stress-test-results/
+
+# ===================================
+# Security and Secrets
+# ===================================
+*.pem
+*.key
+*.crt
+secrets/
+credentials/

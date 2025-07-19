@@ -1,0 +1,36 @@
+{
+  "name": "@mnemonic/legacy",
+  "version": "1.0.0",
+  "description": "Legacy MCP server for Mnemonic memory system - deprecated but maintained for compatibility",
+  "main": "memory-mcp.js",
+  "scripts": {
+    "start": "node memory-mcp.js",
+    "test": "echo 'Legacy system tests not implemented'"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "mnemonic",
+    "legacy",
+    "mcp",
+    "deprecated",
+    "compatibility"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git",
+    "directory": "packages/mnemonic-legacy"
+  },
+  "deprecated": "This package is deprecated. Use @mnemonic/core instead.",
+  "files": [
+    "memory-mcp.js",
+    "tracing*.js"
+  ]
+}

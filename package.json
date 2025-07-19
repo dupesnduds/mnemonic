@@ -1,0 +1,49 @@
+{
+  "name": "@mnemonic/monorepo",
+  "version": "2.0.0",
+  "description": "Mnemonic structured memory system - NZ developed monorepo with high-performance capabilities",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "start:core": "npm start --workspace=packages/mnemonic-core",
+    "start:legacy": "npm start --workspace=packages/mnemonic-legacy",
+    "start:cpp": "npm run start:cpp --workspace=packages/mnemonic-core",
+    "build:native": "npm run rebuild --workspace=packages/mnemonic-native",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && npm run clean:deps",
+    "clean:deps": "rm -rf node_modules packages/*/node_modules",
+    "install:all": "npm install && npm run build:native",
+    "dev": "npm run start:cpp",
+    "dev:js": "npm run start:core",
+    "dev:legacy": "npm run start:legacy"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "mnemonic",
+    "memory", 
+    "structured-memory",
+    "performance", 
+    "native", 
+    "monorepo",
+    "nz-developed",
+    "claude-integration"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git"
+  },
+  "homepage": "https://github.com/dupesnduds/mnemonic#readme",
+  "bugs": {
+    "url": "https://github.com/dupesnduds/mnemonic/issues"
+  }
+}

@@ -1,0 +1,170 @@
+groups:
+  - name: brains-memory.slo-alerts
+    rules:
+      # ===================================
+      # SLO-based Alerts
+      # ===================================
+      
+      # Memory Efficiency SLO Alerts
+      - alert: MemoryEfficiencyWarning
+        expr: (rate(memory_lookup_hits_total[5m]) / rate(memory_lookup_requests_total[5m])) * 100 < 92
+        for: 5m
+        labels:
+          severity: warning
+          slo: "memory_efficiency"
+          runbook: "https://wiki.company.com/runbooks/memory-efficiency"
+        annotations:
+          summary: "Memory efficiency approaching SLO threshold"
+          description: "Memory lookup efficiency is {{ $value | humanizePercentage }} (SLO: 90%)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: MemoryEfficiencyCritical
+        expr: (rate(memory_lookup_hits_total[5m]) / rate(memory_lookup_requests_total[5m])) * 100 < 90
+        for: 5m
+        labels:
+          severity: critical
+          slo: "memory_efficiency"
+          runbook: "https://wiki.company.com/runbooks/memory-efficiency"
+        annotations:
+          summary: "Memory efficiency SLO violation"
+          description: "Memory lookup efficiency is {{ $value | humanizePercentage }} (SLO: 90%)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: MemoryEfficiencyEmergency
+        expr: (rate(memory_lookup_hits_total[5m]) / rate(memory_lookup_requests_total[5m])) * 100 < 85
+        for: 2m
+        labels:
+          severity: emergency
+          sla: "memory_efficiency"
+          runbook: "https://wiki.company.com/runbooks/memory-efficiency"
+        annotations:
+          summary: "Memory efficiency SLA violation risk"
+          description: "Memory lookup efficiency is {{ $value | humanizePercentage }} (SLA: 85%)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+      
+      # Response Latency SLO Alerts
+      - alert: ResponseLatencyWarning
+        expr: histogram_quantile(0.95, sum(rate(memory_file_load_duration_seconds_bucket[5m])) by (le)) > 0.008
+        for: 5m
+        labels:
+          severity: warning
+          slo: "response_latency"
+          runbook: "https://wiki.company.com/runbooks/response-latency"
+        annotations:
+          summary: "Response latency approaching SLO threshold"
+          description: "P95 response latency is {{ $value | humanizeDuration }} (SLO: 10ms)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: ResponseLatencyCritical
+        expr: histogram_quantile(0.95, sum(rate(memory_file_load_duration_seconds_bucket[5m])) by (le)) > 0.01
+        for: 5m
+        labels:
+          severity: critical
+          slo: "response_latency"
+          runbook: "https://wiki.company.com/runbooks/response-latency"
+        annotations:
+          summary: "Response latency SLO violation"
+          description: "P95 response latency is {{ $value | humanizeDuration }} (SLO: 10ms)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      # Availability SLO Alerts
+      - alert: ServiceAvailabilityWarning
+        expr: avg_over_time(up{job="brains-memory"}[5m]) < 0.9995
+        for: 1m
+        labels:
+          severity: warning
+          slo: "availability"
+          runbook: "https://wiki.company.com/runbooks/service-availability"
+        annotations:
+          summary: "Service availability approaching SLO threshold"
+          description: "Service availability is {{ $value | humanizePercentage }} (SLO: 99.9%)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: ServiceAvailabilityCritical
+        expr: up{job="brains-memory"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          slo: "availability"
+          runbook: "https://wiki.company.com/runbooks/service-availability"
+        annotations:
+          summary: "Service availability SLO violation"
+          description: "Brains Memory service is down"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      # Error Rate SLO Alerts
+      - alert: ErrorRateWarning
+        expr: (rate(memory_lookup_misses_total[5m]) / rate(memory_lookup_requests_total[5m])) * 100 > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          slo: "error_rate"
+          runbook: "https://wiki.company.com/runbooks/error-rate"
+        annotations:
+          summary: "Error rate approaching SLO threshold"
+          description: "Error rate is {{ $value | humanizePercentage }} (SLO: 1%)"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      # ===================================
+      # Error Budget Burn Rate Alerts
+      # ===================================
+      
+      - alert: ErrorBudgetBurnRateFast
+        expr: |
+          (
+            (rate(memory_lookup_misses_total[1h]) / rate(memory_lookup_requests_total[1h])) * 100 > 14.4
+          ) and (
+            (rate(memory_lookup_misses_total[5m]) / rate(memory_lookup_requests_total[5m])) * 100 > 14.4
+          )
+        for: 2m
+        labels:
+          severity: critical
+          slo: "error_budget"
+          runbook: "https://wiki.company.com/runbooks/error-budget"
+        annotations:
+          summary: "Fast error budget burn rate detected"
+          description: "Burning through 2 weeks of error budget in 1 hour"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: ErrorBudgetBurnRateSlow
+        expr: |
+          (
+            (rate(memory_lookup_misses_total[6h]) / rate(memory_lookup_requests_total[6h])) * 100 > 1.0
+          ) and (
+            (rate(memory_lookup_misses_total[30m]) / rate(memory_lookup_requests_total[30m])) * 100 > 1.0
+          )
+        for: 15m
+        labels:
+          severity: warning
+          slo: "error_budget"
+          runbook: "https://wiki.company.com/runbooks/error-budget"
+        annotations:
+          summary: "Slow error budget burn rate detected"
+          description: "Consistently burning through monthly error budget"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      # ===================================
+      # Operational Alerts
+      # ===================================
+      
+      - alert: HighConflictResolutionRate
+        expr: rate(memory_conflicts_resolved_total[5m]) > 0.5
+        for: 2m
+        labels:
+          severity: info
+          category: "operational"
+        annotations:
+          summary: "High conflict resolution rate detected"
+          description: "Conflict resolution rate is {{ $value }} conflicts/second"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"
+          
+      - alert: C++EngineFailover
+        expr: memory_engine_type{engine="JavaScript"} == 1
+        for: 1m
+        labels:
+          severity: warning
+          category: "operational"
+        annotations:
+          summary: "System running on JavaScript fallback engine"
+          description: "C++ engine unavailable, using JavaScript fallback"
+          dashboard: "http://localhost:3000/d/brains-memory-dashboard"

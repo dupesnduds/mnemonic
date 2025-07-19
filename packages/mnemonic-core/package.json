@@ -1,0 +1,60 @@
+{
+  "name": "@mnemonic/core",
+  "version": "2.0.0",
+  "description": "Mnemonic core memory system with structured memory capabilities and domain-driven architecture",
+  "main": "src/main.js",
+  "bin": {
+    "mnemonic-memory": "../mnemonic-cli/bin/cli.js"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "start:cpp": "node src/main-cpp.js",
+    "dev": "node src/main-cpp.js",
+    "dev:js": "node src/main.js",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "echo 'Unit tests not yet implemented'",
+    "test:integration": "echo 'Integration tests not yet implemented'",
+    "lint": "echo 'Linting not yet configured'",
+    "typecheck": "echo 'TypeScript checking not yet configured'"
+  },
+  "optionalDependencies": {
+    "@mnemonic/native": "file:../mnemonic-native"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "express": "^4.18.0",
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/sdk-node": "^0.45.0",
+    "@opentelemetry/instrumentation-http": "^0.45.0",
+    "@opentelemetry/instrumentation-express": "^0.34.0",
+    "@opentelemetry/exporter-jaeger": "^1.18.0",
+    "@opentelemetry/resources": "^1.18.0",
+    "@opentelemetry/semantic-conventions": "^1.18.0",
+    "prom-client": "^15.0.0",
+    "response-time": "^2.3.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "mnemonic",
+    "memory", 
+    "structured-memory", 
+    "performance", 
+    "domain-driven",
+    "architecture",
+    "nz-developed"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git",
+    "directory": "packages/mnemonic-core"
+  },
+  "files": [
+    "src/",
+    "lib/",
+    "security/"
+  ]
+}

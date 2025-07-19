@@ -1,0 +1,45 @@
+{
+  "name": "@mnemonic/cli",
+  "version": "2.0.0",
+  "description": "Command-line tools for Mnemonic memory system - NZ-style CLI with comprehensive memory management capabilities",
+  "main": "bin/cli.js",
+  "bin": {
+    "mnemonic": "bin/cli.js",
+    "mnemonic-memory": "bin/cli.js",
+    "mnemonic-intercept": "bin/brains-intercept.js",
+    "mnemonic-coach": "bin/brains-coach.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "echo 'CLI tests not yet implemented'",
+    "lint": "echo 'CLI linting not yet configured'"
+  },
+  "dependencies": {
+    "@mnemonic/core": "file:../mnemonic-core",
+    "commander": "^10.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "mnemonic",
+    "cli",
+    "memory-management",
+    "command-line",
+    "nz-developed",
+    "tools"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git",
+    "directory": "packages/mnemonic-cli"
+  },
+  "files": [
+    "bin/",
+    "shell/"
+  ]
+}

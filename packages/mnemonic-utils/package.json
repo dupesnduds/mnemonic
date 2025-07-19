@@ -1,0 +1,35 @@
+{
+  "name": "@mnemonic/utils",
+  "version": "1.0.0",
+  "description": "Python utilities for Mnemonic memory system monitoring and maintenance - NZ operational tooling",
+  "main": "scripts/index.py",
+  "scripts": {
+    "install": "echo 'Python dependencies require manual setup via pip install -r requirements.txt'",
+    "check-memory": "python scripts/check_memory.py",
+    "update-memory": "python scripts/update_memory.py",
+    "monitor-logs": "python scripts/monitor_logs.py",
+    "test": "echo 'Python utility tests not yet implemented'"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "keywords": [
+    "mnemonic",
+    "python",
+    "utilities",
+    "monitoring",
+    "maintenance",
+    "nz-operational"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git",
+    "directory": "packages/mnemonic-utils"
+  },
+  "files": [
+    "scripts/",
+    "requirements.txt"
+  ]
+}

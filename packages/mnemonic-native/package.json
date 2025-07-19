@@ -1,0 +1,57 @@
+{
+  "name": "@mnemonic/native",
+  "version": "1.0.0",
+  "description": "High-performance C++ native addon for Mnemonic memory system",
+  "main": "index.js",
+  "scripts": {
+    "install": "echo 'Native addon build requires C++ compiler and build tools'",
+    "rebuild": "node-gyp rebuild",
+    "clean": "node-gyp clean",
+    "configure": "node-gyp configure",
+    "build": "node-gyp build",
+    "test": "node test.js"
+  },
+  "gypfile": true,
+  "keywords": [
+    "mnemonic",
+    "memory",
+    "cache",
+    "performance",
+    "native",
+    "addon",
+    "cpp",
+    "nz-optimised"
+  ],
+  "author": "Mnemonic Memory System Team",
+  "license": "MIT",
+  "dependencies": {
+    "node-addon-api": "^6.1.0"
+  },
+  "devDependencies": {
+    "node-gyp": "^9.4.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "binary": {
+    "module_name": "mnemonic_memory_addon",
+    "module_path": "./build/Release/",
+    "host": "https://github.com/dupesnduds/mnemonic/releases/download/",
+    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dupesnduds/mnemonic.git",
+    "directory": "packages/mnemonic-native"
+  },
+  "bugs": {
+    "url": "https://github.com/dupesnduds/mnemonic/issues"
+  },
+  "files": [
+    "src/",
+    "index.js",
+    "fallback.js",
+    "binding.gyp",
+    "build/Release/"
+  ]
+}
