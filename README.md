@@ -1,6 +1,6 @@
 # Mnemonic Memory System
 
-> High-performance structured memory system developed in New Zealand with native C++ capabilities and comprehensive Claude integration.
+> High-performance structured memory system with native C++ capabilities and comprehensive Claude integration.
 
 ## Overview
 
